@@ -13,8 +13,8 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import portrait from "@/assets/owner-portrait.jpg";
-
-const BUSINESS_EMAIL = "you@example.com"; // TODO: set to your real email
+import { supabase } from "@/integrations/supabase/client";
+const CALCOM_URL = "https://cal.com/your-username/free-session"; // TODO: replace with your Cal.com link
 
 const Index = () => {
   const [open, setOpen] = useState(false);
@@ -27,20 +27,32 @@ const Index = () => {
     setNewsletterEmail("");
   };
 
-  const handleBook = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleBook = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = data.get("name");
-    const email = data.get("email");
-    const phone = data.get("phone");
-    const details = data.get("details");
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nDetails: ${details}`);
-    window.location.href = `mailto:${BUSINESS_EMAIL}?subject=${encodeURIComponent(
-      "Free Tech Session Request"
-    )}&body=${body}`;
-    toast.info("Opening your email client to send the request…");
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") || "");
+    const email = String(data.get("email") || "");
+    const phoneRaw = data.get("phone");
+    const detailsRaw = data.get("details");
+
+    const { error } = await supabase.from("session_requests").insert({
+      name,
+      email,
+      phone: phoneRaw ? String(phoneRaw) : null,
+      details: detailsRaw ? String(detailsRaw) : null,
+      source: "website",
+    });
+
+    if (error) {
+      console.error(error);
+      toast.error("Something went wrong. Please try again.");
+      return;
+    }
+
+    toast.success("Request sent! I’ll get back to you shortly.");
     setOpen(false);
-    e.currentTarget.reset();
+    form.reset();
   };
 
   return (
@@ -68,7 +80,7 @@ const Index = () => {
 
       <header className="container mx-auto py-6">
         <nav className="flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <img
               src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png"
               alt="Tech Made Simple logo"
@@ -143,6 +155,9 @@ const Index = () => {
                   <Button size="lg" variant="hero">Book Free Session</Button>
                 </DialogTrigger>
               </Dialog>
+              <Button size="lg" variant="secondary" asChild>
+                <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Schedule via Cal.com</a>
+              </Button>
               <form onSubmit={handleNewsletter} className="flex w-full max-w-md items-center gap-2 sm:w-auto">
                 <Input
                   type="email"

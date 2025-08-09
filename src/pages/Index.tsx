@@ -14,7 +14,7 @@ import {
 import { toast } from "sonner";
 import portrait from "@/assets/owner-portrait.jpg";
 import { supabase } from "@/integrations/supabase/client";
-const CALCOM_URL = "https://cal.com/your-username/free-session"; // TODO: replace with your Cal.com link
+
 
 const Index = () => {
   const [open, setOpen] = useState(false);
@@ -155,9 +155,6 @@ const Index = () => {
                   <Button size="lg" variant="hero">Book Free Session</Button>
                 </DialogTrigger>
               </Dialog>
-              <Button size="lg" variant="secondary" asChild>
-                <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Schedule via Cal.com</a>
-              </Button>
               <form onSubmit={handleNewsletter} className="flex w-full max-w-md items-center gap-2 sm:w-auto">
                 <Input
                   type="email"

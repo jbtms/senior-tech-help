@@ -82,17 +82,6 @@ const Index = () => {
               <Button size="lg" variant="hero" asChild>
                 <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
               </Button>
-              <form onSubmit={handleNewsletter} className="flex w-full max-w-md items-center gap-2 sm:w-auto">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  aria-label="Email address"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  required
-                />
-                <Button type="submit" variant="cta">Join Mailing List</Button>
-              </form>
             </div>
             <ul className="text-sm text-muted-foreground grid grid-cols-1 gap-2 sm:grid-cols-2">
               <li>• Patient, judgment‑free guidance</li>
@@ -184,6 +173,17 @@ const Index = () => {
                   Add your intro video file or a YouTube embed here.
                 </p>
               </div>
+              <form onSubmit={handleNewsletter} className="mt-4 flex w-full max-w-md items-center gap-2">
+                <Input
+                  type="email"
+                  placeholder="Enter your email"
+                  aria-label="Email address"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  required
+                />
+                <Button type="submit" variant="cta">Join Mailing List</Button>
+              </form>
             </aside>
           </div>
         </section>

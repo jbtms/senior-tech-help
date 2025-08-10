@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import portrait from "@/assets/owner-portrait.jpg";
-const CALCOM_URL = "https://cal.com/your-username/free-session";
+const CALCOM_URL = "https://cal.com/techsimple/30min";
 
 
 const Index = () => {

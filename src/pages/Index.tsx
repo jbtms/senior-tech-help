@@ -2,22 +2,13 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { toast } from "sonner";
 import portrait from "@/assets/owner-portrait.jpg";
-import { supabase } from "@/integrations/supabase/client";
+const CALCOM_URL = "https://cal.com/your-username/free-session";
 
 
 const Index = () => {
-  const [open, setOpen] = useState(false);
+  
   const [newsletterEmail, setNewsletterEmail] = useState("");
 
   const handleNewsletter = (e: React.FormEvent) => {
@@ -27,33 +18,6 @@ const Index = () => {
     setNewsletterEmail("");
   };
 
-  const handleBook = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    const name = String(data.get("name") || "");
-    const email = String(data.get("email") || "");
-    const phoneRaw = data.get("phone");
-    const detailsRaw = data.get("details");
-
-    const { error } = await supabase.from("session_requests").insert({
-      name,
-      email,
-      phone: phoneRaw ? String(phoneRaw) : null,
-      details: detailsRaw ? String(detailsRaw) : null,
-      source: "website",
-    });
-
-    if (error) {
-      console.error(error);
-      toast.error("Something went wrong. Please try again.");
-      return;
-    }
-
-    toast.success("Request sent! I’ll get back to you shortly.");
-    setOpen(false);
-    form.reset();
-  };
 
   return (
     <>
@@ -96,44 +60,9 @@ const Index = () => {
             <Button variant="link" asChild>
               <a href="#pricing" className="story-link">Pricing</a>
             </Button>
-            <Dialog open={open} onOpenChange={setOpen}>
-              <DialogTrigger asChild>
-                <Button variant="hero">Book Free Session</Button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-lg">
-                <DialogHeader>
-                  <DialogTitle>Book your free session</DialogTitle>
-                </DialogHeader>
-                <form className="space-y-4" onSubmit={handleBook}>
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div>
-                      <Label htmlFor="name">Name</Label>
-                      <Input id="name" name="name" required placeholder="Jane Doe" />
-                    </div>
-                    <div>
-                      <Label htmlFor="phone">Phone</Label>
-                      <Input id="phone" name="phone" placeholder="(555) 555-5555" />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    <div className="sm:col-span-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input id="email" name="email" type="email" required placeholder="you@example.com" />
-                    </div>
-                  </div>
-                  <div>
-                    <Label htmlFor="details">What do you need help with?</Label>
-                    <Textarea id="details" name="details" placeholder="e.g., iPhone setup, Photos backup, Mac cleanup…" />
-                  </div>
-                  <div className="flex justify-end gap-2 pt-2">
-                    <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
-                      Cancel
-                    </Button>
-                    <Button type="submit" variant="cta">Send request</Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
+            <Button variant="hero" asChild>
+              <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+            </Button>
           </div>
         </nav>
       </header>
@@ -150,11 +79,9 @@ const Index = () => {
               Windows and Android when needed. Get unstuck fast and feel confident.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Dialog open={open} onOpenChange={setOpen}>
-                <DialogTrigger asChild>
-                  <Button size="lg" variant="hero">Book Free Session</Button>
-                </DialogTrigger>
-              </Dialog>
+              <Button size="lg" variant="hero" asChild>
+                <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+              </Button>
               <form onSubmit={handleNewsletter} className="flex w-full max-w-md items-center gap-2 sm:w-auto">
                 <Input
                   type="email"
@@ -201,7 +128,9 @@ const Index = () => {
                   <li>• Device setup and cleanup</li>
                   <li>• Wi‑Fi, backups, Photos, iCloud</li>
                 </ul>
-                <Button variant="hero" size="lg" onClick={() => setOpen(true)}>Book Free Session</Button>
+                <Button variant="hero" size="lg" asChild>
+                  <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+                </Button>
               </CardContent>
             </Card>
             <Card className="hover-scale">
@@ -215,7 +144,9 @@ const Index = () => {
                   <li>• Quick fixes and coaching</li>
                   <li>• Great for follow‑ups</li>
                 </ul>
-                <Button variant="hero" size="lg" onClick={() => setOpen(true)}>Book Free Session</Button>
+                <Button variant="hero" size="lg" asChild>
+                  <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+                </Button>
               </CardContent>
             </Card>
           </div>

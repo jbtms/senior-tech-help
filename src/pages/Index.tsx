@@ -5,52 +5,43 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import portrait from "@/assets/owner-portrait.jpg";
 const CALCOM_URL = "https://cal.com/techsimple/30min";
-
-
 const Index = () => {
-  
   const [newsletterEmail, setNewsletterEmail] = useState("");
-
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail) return;
     toast.success("Thanks! You're on the list.");
     setNewsletterEmail("");
   };
-
-
-  return (
-    <>
+  return <>
       {/* JSON-LD Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ProfessionalService",
-            name: "Tech Made Simple",
-            description:
-              "Patient, Apple-focused tech support for seniors and non-tech users. Onsite and remote help.",
-            areaServed: "Remote and local service",
-            priceRange: "$$",
-            url: window.location.origin,
-            offers: [
-              { "@type": "Offer", name: "Onsite Support", price: 100, priceCurrency: "USD" },
-              { "@type": "Offer", name: "Remote Support", price: 50, priceCurrency: "USD" },
-            ],
-          }),
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        name: "Tech Made Simple",
+        description: "Patient, Apple-focused tech support for seniors and non-tech users. Onsite and remote help.",
+        areaServed: "Remote and local service",
+        priceRange: "$$",
+        url: window.location.origin,
+        offers: [{
+          "@type": "Offer",
+          name: "Onsite Support",
+          price: 100,
+          priceCurrency: "USD"
+        }, {
+          "@type": "Offer",
+          name: "Remote Support",
+          price: 50,
+          priceCurrency: "USD"
+        }]
+      })
+    }} />
 
       <header className="container mx-auto py-6">
         <nav className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-3">
-            <img
-              src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png"
-              alt="Tech Made Simple logo"
-              className="h-10 w-10 rounded-sm"
-              loading="eager"
-            />
+            <img src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png" alt="Tech Made Simple logo" className="h-10 w-10 rounded-sm" loading="eager" />
             <span className="font-semibold tracking-tight">Tech Made Simple</span>
           </a>
           <div className="flex items-center gap-3">
@@ -71,9 +62,8 @@ const Index = () => {
         {/* Hero */}
         <section className="container mx-auto grid items-center gap-8 pb-16 pt-4 md:grid-cols-2">
           <article className="space-y-6 animate-enter">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
-              Tech Support for Seniors — Simple, Patient, Apple‑Focused
-            </h1>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Tech Support for                     Seniors
+ Simple, Patient, Apple‑Focused</h1>
             <p className="text-lg text-muted-foreground">
               Friendly one‑on‑one help with iPhone, iPad, and Mac. I also assist with
               Windows and Android when needed. Get unstuck fast and feel confident.
@@ -91,11 +81,7 @@ const Index = () => {
             </ul>
           </article>
           <aside className="relative order-first md:order-last">
-            <img
-              src="/lovable-uploads/8ee775ed-9f5d-4adb-b3e0-abdf2848e37d.png"
-              alt="Friendly tech support specialist portrait"
-              className="mx-auto aspect-[3/4] w-full max-w-sm rounded-lg object-cover shadow-lg"
-            />
+            <img src="/lovable-uploads/8ee775ed-9f5d-4adb-b3e0-abdf2848e37d.png" alt="Friendly tech support specialist portrait" className="mx-auto aspect-[3/4] w-full max-w-sm rounded-lg object-cover shadow-lg" />
           </aside>
         </section>
 
@@ -161,11 +147,7 @@ const Index = () => {
             <aside>
               <div className="rounded-lg border p-4">
                 <h3 className="mb-2 font-semibold">Quick Intro Video</h3>
-                <video
-                  className="aspect-video w-full rounded-md bg-muted"
-                  controls
-                  poster="/placeholder.svg"
-                >
+                <video className="aspect-video w-full rounded-md bg-muted" controls poster="/placeholder.svg">
                   <source src="" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
@@ -174,14 +156,7 @@ const Index = () => {
                 </p>
               </div>
               <form onSubmit={handleNewsletter} className="mt-4 flex w-full max-w-md items-center gap-2">
-                <Input
-                  type="email"
-                  placeholder="Enter your email"
-                  aria-label="Email address"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  required
-                />
+                <Input type="email" placeholder="Enter your email" aria-label="Email address" value={newsletterEmail} onChange={e => setNewsletterEmail(e.target.value)} required />
                 <Button type="submit" variant="cta">Join Mailing List</Button>
               </form>
             </aside>
@@ -201,14 +176,7 @@ const Index = () => {
                 Step‑by‑step lessons for everyday tasks with iPhone, iPad, and Mac. Subscribe to be notified at launch.
               </p>
               <form onSubmit={handleNewsletter} className="flex w-full max-w-md items-center gap-2">
-                <Input
-                  type="email"
-                  placeholder="Email for course updates"
-                  aria-label="Email for course updates"
-                  value={newsletterEmail}
-                  onChange={(e) => setNewsletterEmail(e.target.value)}
-                  required
-                />
+                <Input type="email" placeholder="Email for course updates" aria-label="Email for course updates" value={newsletterEmail} onChange={e => setNewsletterEmail(e.target.value)} required />
                 <Button type="submit" variant="cta">Notify me</Button>
               </form>
             </CardContent>
@@ -220,8 +188,6 @@ const Index = () => {
         <p>&copy; {new Date().getFullYear()} Tech Made Simple. All rights reserved.</p>
         <p className="mt-1">Apple, iPhone, iPad, and Mac are trademarks of Apple Inc. I provide independent support.</p>
       </footer>
-    </>
-  );
+    </>;
 };
-
 export default Index;

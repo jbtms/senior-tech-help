@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import portrait from "@/assets/owner-portrait.jpg";
@@ -9,6 +10,7 @@ const CALCOM_URL = "https://cal.com/techsimple/30min";
 const Index = () => {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterFirstName, setNewsletterFirstName] = useState("");
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +34,7 @@ const Index = () => {
       toast.success("Thanks! You're on the list.");
       setNewsletterEmail("");
       setNewsletterFirstName("");
+      setIsDialogOpen(false);
     } catch (error) {
       console.error('Newsletter signup error:', error);
       toast.error("Something went wrong. Please try again.");
@@ -178,25 +181,35 @@ const Index = () => {
                   Add your intro video file or a YouTube embed here.
                 </p>
               </div>
-              <form onSubmit={handleNewsletter} className="mt-4 space-y-3 w-full max-w-md">
-                <Input 
-                  type="text" 
-                  placeholder="Enter your first name" 
-                  aria-label="First name" 
-                  value={newsletterFirstName} 
-                  onChange={e => setNewsletterFirstName(e.target.value)} 
-                  required 
-                />
-                <Input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  aria-label="Email address" 
-                  value={newsletterEmail} 
-                  onChange={e => setNewsletterEmail(e.target.value)} 
-                  required 
-                />
-                <Button type="submit" variant="cta" className="w-full">Join Mailing List</Button>
-              </form>
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="cta" className="mt-4">Join Mailing List</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Join Our Mailing List</DialogTitle>
+                  </DialogHeader>
+                  <form onSubmit={handleNewsletter} className="space-y-4">
+                    <Input 
+                      type="text" 
+                      placeholder="Enter your first name" 
+                      aria-label="First name" 
+                      value={newsletterFirstName} 
+                      onChange={e => setNewsletterFirstName(e.target.value)} 
+                      required 
+                    />
+                    <Input 
+                      type="email" 
+                      placeholder="Enter your email" 
+                      aria-label="Email address" 
+                      value={newsletterEmail} 
+                      onChange={e => setNewsletterEmail(e.target.value)} 
+                      required 
+                    />
+                    <Button type="submit" variant="cta" className="w-full">Join Mailing List</Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </aside>
           </div>
         </section>
@@ -213,25 +226,35 @@ const Index = () => {
               <p className="max-w-2xl text-muted-foreground">
                 Step‑by‑step lessons for everyday tasks with iPhone, iPad, and Mac. Subscribe to be notified at launch.
               </p>
-              <form onSubmit={handleNewsletter} className="space-y-3 w-full max-w-md">
-                <Input 
-                  type="text" 
-                  placeholder="Enter your first name" 
-                  aria-label="First name" 
-                  value={newsletterFirstName} 
-                  onChange={e => setNewsletterFirstName(e.target.value)} 
-                  required 
-                />
-                <Input 
-                  type="email" 
-                  placeholder="Email for course updates" 
-                  aria-label="Email for course updates" 
-                  value={newsletterEmail} 
-                  onChange={e => setNewsletterEmail(e.target.value)} 
-                  required 
-                />
-                <Button type="submit" variant="cta" className="w-full">Notify me</Button>
-              </form>
+              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                <DialogTrigger asChild>
+                  <Button variant="cta">Subscribe - Notify Me</Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Get Course Updates</DialogTitle>
+                  </DialogHeader>
+                  <form onSubmit={handleNewsletter} className="space-y-4">
+                    <Input 
+                      type="text" 
+                      placeholder="Enter your first name" 
+                      aria-label="First name" 
+                      value={newsletterFirstName} 
+                      onChange={e => setNewsletterFirstName(e.target.value)} 
+                      required 
+                    />
+                    <Input 
+                      type="email" 
+                      placeholder="Email for course updates" 
+                      aria-label="Email for course updates" 
+                      value={newsletterEmail} 
+                      onChange={e => setNewsletterEmail(e.target.value)} 
+                      required 
+                    />
+                    <Button type="submit" variant="cta" className="w-full">Subscribe - Notify Me</Button>
+                  </form>
+                </DialogContent>
+              </Dialog>
             </CardContent>
           </Card>
         </section>

@@ -62,8 +62,8 @@ const Index = () => {
         {/* Hero */}
         <section className="container mx-auto grid items-center gap-8 pb-16 pt-4 md:grid-cols-2">
           <article className="space-y-6 animate-enter">
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Tech Support for                     Seniors
- Simple, Patient, Apple‑Focused</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Tech Support for    Seniors  
+Simple, Patient, Apple‑Focused</h1>
             <p className="text-lg text-muted-foreground">
               Friendly one‑on‑one help with iPhone, iPad, and Mac. I also assist with
               Windows and Android when needed. Get unstuck fast and feel confident.

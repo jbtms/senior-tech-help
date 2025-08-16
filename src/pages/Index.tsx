@@ -3,15 +3,39 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import portrait from "@/assets/owner-portrait.jpg";
 const CALCOM_URL = "https://cal.com/techsimple/30min";
 const Index = () => {
   const [newsletterEmail, setNewsletterEmail] = useState("");
-  const handleNewsletter = (e: React.FormEvent) => {
+  const [newsletterFirstName, setNewsletterFirstName] = useState("");
+  
+  const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newsletterEmail) return;
-    toast.success("Thanks! You're on the list.");
-    setNewsletterEmail("");
+    if (!newsletterEmail || !newsletterFirstName) {
+      toast.error("Please fill in both fields");
+      return;
+    }
+    
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscriptions')
+        .insert([
+          { 
+            email: newsletterEmail,
+            first_name: newsletterFirstName
+          }
+        ]);
+      
+      if (error) throw error;
+      
+      toast.success("Thanks! You're on the list.");
+      setNewsletterEmail("");
+      setNewsletterFirstName("");
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast.error("Something went wrong. Please try again.");
+    }
   };
   return <>
       {/* JSON-LD Structured Data */}
@@ -154,9 +178,24 @@ const Index = () => {
                   Add your intro video file or a YouTube embed here.
                 </p>
               </div>
-              <form onSubmit={handleNewsletter} className="mt-4 flex w-full max-w-md items-center gap-2">
-                <Input type="email" placeholder="Enter your email" aria-label="Email address" value={newsletterEmail} onChange={e => setNewsletterEmail(e.target.value)} required />
-                <Button type="submit" variant="cta">Join Mailing List</Button>
+              <form onSubmit={handleNewsletter} className="mt-4 space-y-3 w-full max-w-md">
+                <Input 
+                  type="text" 
+                  placeholder="Enter your first name" 
+                  aria-label="First name" 
+                  value={newsletterFirstName} 
+                  onChange={e => setNewsletterFirstName(e.target.value)} 
+                  required 
+                />
+                <Input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  aria-label="Email address" 
+                  value={newsletterEmail} 
+                  onChange={e => setNewsletterEmail(e.target.value)} 
+                  required 
+                />
+                <Button type="submit" variant="cta" className="w-full">Join Mailing List</Button>
               </form>
             </aside>
           </div>
@@ -174,9 +213,24 @@ const Index = () => {
               <p className="max-w-2xl text-muted-foreground">
                 Step‑by‑step lessons for everyday tasks with iPhone, iPad, and Mac. Subscribe to be notified at launch.
               </p>
-              <form onSubmit={handleNewsletter} className="flex w-full max-w-md items-center gap-2">
-                <Input type="email" placeholder="Email for course updates" aria-label="Email for course updates" value={newsletterEmail} onChange={e => setNewsletterEmail(e.target.value)} required />
-                <Button type="submit" variant="cta">Notify me</Button>
+              <form onSubmit={handleNewsletter} className="space-y-3 w-full max-w-md">
+                <Input 
+                  type="text" 
+                  placeholder="Enter your first name" 
+                  aria-label="First name" 
+                  value={newsletterFirstName} 
+                  onChange={e => setNewsletterFirstName(e.target.value)} 
+                  required 
+                />
+                <Input 
+                  type="email" 
+                  placeholder="Email for course updates" 
+                  aria-label="Email for course updates" 
+                  value={newsletterEmail} 
+                  onChange={e => setNewsletterEmail(e.target.value)} 
+                  required 
+                />
+                <Button type="submit" variant="cta" className="w-full">Notify me</Button>
               </form>
             </CardContent>
           </Card>

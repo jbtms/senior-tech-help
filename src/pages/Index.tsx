@@ -61,7 +61,7 @@ const Index = () => {
               <a href="#pricing" className="story-link">Pricing</a>
             </Button>
             <Button variant="hero" asChild>
-              <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+              <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
             </Button>
           </div>
         </nav>
@@ -80,7 +80,7 @@ const Index = () => {
             </p>
             <div className="flex flex-wrap gap-3">
               <Button size="lg" variant="hero" asChild>
-                <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+                <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
               </Button>
             </div>
             <ul className="text-sm text-muted-foreground grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -118,7 +118,7 @@ const Index = () => {
                   <li>• Wi‑Fi, backups, Photos, iCloud</li>
                 </ul>
                 <Button variant="hero" size="lg" asChild>
-                  <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+                  <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
                 </Button>
               </CardContent>
             </Card>
@@ -134,7 +134,7 @@ const Index = () => {
                   <li>• Great for follow‑ups</li>
                 </ul>
                 <Button variant="hero" size="lg" asChild>
-                  <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Session</a>
+                  <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
                 </Button>
               </CardContent>
             </Card>

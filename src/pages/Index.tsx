@@ -92,7 +92,7 @@ const Index = () => {
           </article>
           <aside className="relative order-first md:order-last">
             <img
-              src={portrait}
+              src="/lovable-uploads/8ee775ed-9f5d-4adb-b3e0-abdf2848e37d.png"
               alt="Friendly tech support specialist portrait"
               className="mx-auto aspect-[3/4] w-full max-w-sm rounded-lg object-cover shadow-lg"
             />

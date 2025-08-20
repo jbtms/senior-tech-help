@@ -10,7 +10,8 @@ const CALCOM_URL = "https://cal.com/techsimple/30min";
 const Index = () => {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterFirstName, setNewsletterFirstName] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [isMailingListDialogOpen, setIsMailingListDialogOpen] = useState(false);
+  const [isCourseDialogOpen, setIsCourseDialogOpen] = useState(false);
   
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +35,8 @@ const Index = () => {
       toast.success("Thanks! You're on the list.");
       setNewsletterEmail("");
       setNewsletterFirstName("");
-      setIsDialogOpen(false);
+      setIsMailingListDialogOpen(false);
+      setIsCourseDialogOpen(false);
     } catch (error) {
       console.error('Newsletter signup error:', error);
       toast.error("Something went wrong. Please try again.");
@@ -181,7 +183,7 @@ const Index = () => {
                   Add your intro video file or a YouTube embed here.
                 </p>
               </div>
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <Dialog open={isMailingListDialogOpen} onOpenChange={setIsMailingListDialogOpen}>
                 <DialogTrigger asChild>
                   <Button variant="cta" className="mt-4">Join Mailing List</Button>
                 </DialogTrigger>
@@ -226,7 +228,7 @@ const Index = () => {
               <p className="max-w-2xl text-muted-foreground">
                 Step‑by‑step lessons for everyday tasks with iPhone, iPad, and Mac. Subscribe to be notified at launch.
               </p>
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <Dialog open={isCourseDialogOpen} onOpenChange={setIsCourseDialogOpen}>
                 <DialogTrigger asChild>
                   <Button variant="cta">Subscribe - Notify Me</Button>
                 </DialogTrigger>

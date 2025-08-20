@@ -187,12 +187,12 @@ const Index = () => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Join Our Mailing List</DialogTitle>
+                    <DialogTitle>Get Apple Tips and Updates</DialogTitle>
                   </DialogHeader>
                   <form onSubmit={handleNewsletter} className="space-y-4">
                     <Input 
                       type="text" 
-                      placeholder="Enter your first name" 
+                      placeholder="First Name" 
                       aria-label="First name" 
                       value={newsletterFirstName} 
                       onChange={e => setNewsletterFirstName(e.target.value)} 
@@ -200,13 +200,13 @@ const Index = () => {
                     />
                     <Input 
                       type="email" 
-                      placeholder="Enter your email" 
+                      placeholder="email" 
                       aria-label="Email address" 
                       value={newsletterEmail} 
                       onChange={e => setNewsletterEmail(e.target.value)} 
                       required 
                     />
-                    <Button type="submit" variant="cta" className="w-full">Join Mailing List</Button>
+                    <Button type="submit" variant="cta" className="w-full">Subscribe</Button>
                   </form>
                 </DialogContent>
               </Dialog>

@@ -20,6 +20,8 @@ const Index = () => {
     }
     
     try {
+      console.log('Sending newsletter signup:', { email: newsletterEmail, firstName: newsletterFirstName });
+      
       const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: {
@@ -31,7 +33,10 @@ const Index = () => {
         }),
       });
       
+      console.log('Response status:', response.status);
+      
       const result = await response.json();
+      console.log('Response result:', result);
       
       if (!response.ok) {
         throw new Error(result.error || 'Failed to subscribe');
@@ -44,7 +49,7 @@ const Index = () => {
       setIsCourseDialogOpen(false);
     } catch (error) {
       console.error('Newsletter signup error:', error);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(`Error: ${error instanceof Error ? error.message : 'Something went wrong. Please try again.'}`);
     }
   };
   return <>

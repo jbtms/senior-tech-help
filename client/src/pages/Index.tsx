@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import { supabase } from "@/integrations/supabase/client";
 import portrait from "@/assets/owner-portrait.jpg";
 const CALCOM_URL = "https://cal.com/techsimple/30min";
 const Index = () => {
@@ -21,16 +20,22 @@ const Index = () => {
     }
     
     try {
-      const { error } = await supabase
-        .from('newsletter_subscriptions')
-        .insert([
-          { 
-            email: newsletterEmail,
-            first_name: newsletterFirstName
-          }
-        ]);
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+          firstName: newsletterFirstName
+        }),
+      });
       
-      if (error) throw error;
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to subscribe');
+      }
       
       toast.success("Thanks! You're on the list.");
       setNewsletterEmail("");

@@ -9,11 +9,15 @@ export const users = pgTable("users", {
   password: text("password").notNull(),
 });
 
+// Subscription types enum
+export const subscriptionTypeEnum = pgEnum("subscription_type", ["newsletter", "course_interest"]);
+
 // Newsletter subscriptions table
 export const newsletterSubscriptions = pgTable("newsletter_subscriptions", {
   id: uuid("id").primaryKey().default(sql`gen_random_uuid()`),
   email: text("email").notNull(),
   firstName: text("first_name"),
+  subscriptionType: subscriptionTypeEnum("subscription_type").notNull().default("newsletter"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().default(sql`now()`),
   updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().default(sql`now()`),
 });
@@ -49,6 +53,7 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export const insertNewsletterSubscriptionSchema = createInsertSchema(newsletterSubscriptions).pick({
   email: true,
   firstName: true,
+  subscriptionType: true,
 });
 
 export const insertSessionRequestSchema = createInsertSchema(sessionRequests).pick({

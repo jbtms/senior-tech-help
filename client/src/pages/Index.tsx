@@ -9,6 +9,8 @@ const CALCOM_URL = "https://cal.com/techsimple/30min";
 const Index = () => {
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterFirstName, setNewsletterFirstName] = useState("");
+  const [courseEmail, setCourseEmail] = useState("");
+  const [courseFirstName, setCourseFirstName] = useState("");
   const [isMailingListDialogOpen, setIsMailingListDialogOpen] = useState(false);
   const [isCourseDialogOpen, setIsCourseDialogOpen] = useState(false);
   
@@ -41,9 +43,43 @@ const Index = () => {
       setNewsletterEmail("");
       setNewsletterFirstName("");
       setIsMailingListDialogOpen(false);
-      setIsCourseDialogOpen(false);
     } catch (error) {
       console.error('Newsletter signup error:', error);
+      toast.error("Something went wrong. Please try again.");
+    }
+  };
+
+  const handleCourseInterest = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!courseEmail || !courseFirstName) {
+      toast.error("Please fill in both fields");
+      return;
+    }
+    
+    try {
+      const response = await fetch('/api/course-interest', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: courseEmail,
+          firstName: courseFirstName
+        }),
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to subscribe');
+      }
+      
+      toast.success("Thanks! You'll be notified when the course launches.");
+      setCourseEmail("");
+      setCourseFirstName("");
+      setIsCourseDialogOpen(false);
+    } catch (error) {
+      console.error('Course interest signup error:', error);
       toast.error("Something went wrong. Please try again.");
     }
   };
@@ -241,21 +277,21 @@ const Index = () => {
                   <DialogHeader>
                     <DialogTitle>Get Course Updates</DialogTitle>
                   </DialogHeader>
-                  <form onSubmit={handleNewsletter} className="space-y-4">
+                  <form onSubmit={handleCourseInterest} className="space-y-4">
                     <Input 
                       type="text" 
                       placeholder="Enter your first name" 
                       aria-label="First name" 
-                      value={newsletterFirstName} 
-                      onChange={e => setNewsletterFirstName(e.target.value)} 
+                      value={courseFirstName} 
+                      onChange={e => setCourseFirstName(e.target.value)} 
                       required 
                     />
                     <Input 
                       type="email" 
                       placeholder="Email for course updates" 
                       aria-label="Email for course updates" 
-                      value={newsletterEmail} 
-                      onChange={e => setNewsletterEmail(e.target.value)} 
+                      value={courseEmail} 
+                      onChange={e => setCourseEmail(e.target.value)} 
                       required 
                     />
                     <Button type="submit" variant="cta" className="w-full">Subscribe - Notify Me</Button>

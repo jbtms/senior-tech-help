@@ -75,8 +75,8 @@ const Index = () => {
       <header className="container mx-auto py-6">
         <nav className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-3">
-            <img src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png" alt="Tech Made Simple logo" className="h-10 w-10 rounded-sm" loading="eager" />
-            <span className="font-semibold tracking-tight">Tech Made Simple</span>
+            <img src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png" alt="Tech Made Simple logo" className="h-15 w-15 rounded-sm" loading="eager" />
+            <span className="text-xl font-semibold tracking-tight">Tech Made Simple</span>
           </a>
           <div className="flex items-center gap-3">
             <Button variant="link" asChild>

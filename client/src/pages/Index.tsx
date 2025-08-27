@@ -72,20 +72,20 @@ const Index = () => {
       })
     }} />
 
-      <header className="container mx-auto py-6">
+      <header className="container mx-auto px-4 py-6">
         <nav className="flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
-            <img src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png" alt="Tech Made Simple logo" className="h-11 w-11 rounded-sm" loading="eager" />
-            <span className="text-xl font-semibold tracking-tight">Tech Made Simple</span>
+          <a href="/" className="flex items-center gap-2 sm:gap-3">
+            <img src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png" alt="Tech Made Simple logo" className="h-10 w-10 sm:h-11 sm:w-11 rounded-sm" loading="eager" />
+            <span className="text-lg sm:text-xl font-semibold tracking-tight">Tech Made Simple</span>
           </a>
-          <div className="flex items-center gap-3">
-            <Button variant="link" asChild>
+          <div className="flex items-center gap-1 sm:gap-3">
+            <Button variant="link" size="sm" asChild className="hidden sm:inline-flex">
               <a href="#about" className="story-link">About</a>
             </Button>
-            <Button variant="link" asChild>
+            <Button variant="link" size="sm" asChild className="hidden sm:inline-flex">
               <a href="#pricing" className="story-link">Pricing</a>
             </Button>
-            <Button variant="hero" asChild>
+            <Button variant="hero" size="sm" asChild className="text-xs sm:text-sm">
               <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
             </Button>
           </div>
@@ -94,15 +94,15 @@ const Index = () => {
 
       <main>
         {/* Hero */}
-        <section className="container mx-auto grid items-center gap-8 pb-16 pt-4 md:grid-cols-2">
+        <section className="container mx-auto px-4 grid items-center gap-6 sm:gap-8 pb-12 sm:pb-16 pt-4 md:grid-cols-2">
           <article className="space-y-6 animate-enter">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">Tech Support for    Seniors  - Simple, Patient, Apple‑Focused</h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground">
               Friendly one‑on‑one help with iPhone, iPad, and Mac. I also assist with
               Windows and Android when needed. Get unstuck fast and feel confident.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Button size="lg" variant="hero" asChild>
+              <Button size="lg" variant="hero" asChild className="w-full sm:w-auto">
                 <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
               </Button>
             </div>
@@ -119,9 +119,9 @@ const Index = () => {
         </section>
 
         {/* Pricing */}
-        <section id="pricing" className="container mx-auto py-12">
+        <section id="pricing" className="container mx-auto px-4 py-8 sm:py-12">
           <div className="mb-8 text-center">
-            <h2 className="text-3xl font-bold tracking-tight">Simple Pricing</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">Simple Pricing</h2>
             <p className="text-muted-foreground">Clear rates with no surprises.</p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
@@ -130,13 +130,13 @@ const Index = () => {
                 <CardTitle>Onsite Tech Support</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-4xl font-extrabold">$100<span className="text-lg font-medium">/hr</span></p>
+                <p className="text-3xl sm:text-4xl font-extrabold">$100<span className="text-base sm:text-lg font-medium">/hr</span></p>
                 <ul className="text-muted-foreground">
                   <li>• Home visits and in‑person help</li>
                   <li>• Device setup and cleanup</li>
                   <li>• Wi‑Fi, backups, Photos, iCloud</li>
                 </ul>
-                <Button variant="hero" size="lg" asChild>
+                <Button variant="hero" size="sm" asChild className="w-full sm:w-auto">
                   <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
                 </Button>
               </CardContent>
@@ -146,13 +146,13 @@ const Index = () => {
                 <CardTitle>Remote Tech Support</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
-                <p className="text-4xl font-extrabold">$50<span className="text-lg font-medium">/hr</span></p>
+                <p className="text-3xl sm:text-4xl font-extrabold">$50<span className="text-base sm:text-lg font-medium">/hr</span></p>
                 <ul className="text-muted-foreground">
                   <li>• Secure screen‑share assistance</li>
                   <li>• Quick fixes and coaching</li>
                   <li>• Great for follow‑ups</li>
                 </ul>
-                <Button variant="hero" size="lg" asChild>
+                <Button variant="hero" size="sm" asChild className="w-full sm:w-auto">
                   <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
                 </Button>
               </CardContent>
@@ -161,10 +161,10 @@ const Index = () => {
         </section>
 
         {/* About */}
-        <section id="about" className="container mx-auto py-12">
-          <div className="grid gap-8 md:grid-cols-2">
+        <section id="about" className="container mx-auto px-4 py-8 sm:py-12">
+          <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
             <article className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tight">About Me</h2>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">About Me</h2>
               <p className="text-muted-foreground">
                 I provide patient, practical tech help tailored for seniors and anyone who
                 prefers a calm, simple approach. I specialize in Apple products and make
@@ -222,14 +222,14 @@ const Index = () => {
         </section>
 
         {/* Course Coming Soon */}
-        <section className="container mx-auto py-12">
+        <section className="container mx-auto px-4 py-8 sm:py-12">
           <Card>
             <CardContent className="flex flex-col items-center gap-4 py-8 text-center">
               <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-3 py-1 text-sm">
                 <span className="h-2 w-2 rounded-full bg-accent" aria-hidden />
                 Coming soon
               </div>
-              <h2 className="text-2xl font-bold">Simple Tech Made Easy — Online Course</h2>
+              <h2 className="text-xl sm:text-2xl font-bold">Simple Tech Made Easy — Online Course</h2>
               <p className="max-w-2xl text-muted-foreground">
                 Step‑by‑step lessons for everyday tasks with iPhone, iPad, and Mac. Subscribe to be notified at launch.
               </p>
@@ -267,7 +267,7 @@ const Index = () => {
         </section>
       </main>
 
-      <footer className="container mx-auto border-t py-8 text-center text-sm text-muted-foreground">
+      <footer className="container mx-auto px-4 border-t py-6 sm:py-8 text-center text-xs sm:text-sm text-muted-foreground">
         <p>&copy; {new Date().getFullYear()} Tech Made Simple. All rights reserved.</p>
         <p className="mt-1">Apple, iPhone, iPad, and Mac are trademarks of Apple Inc. I provide independent support.</p>
       </footer>

@@ -244,7 +244,7 @@ const Index = () => {
                     />
                     <Input 
                       type="email" 
-                      placeholder="email" 
+                      placeholder="Email" 
                       aria-label="Email address" 
                       value={newsletterEmail} 
                       onChange={e => setNewsletterEmail(e.target.value)} 

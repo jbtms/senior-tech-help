@@ -99,26 +99,20 @@ class KitAPI {
 
   async syncSubscriberToKit(subscription: NewsletterSubscription): Promise<void> {
     try {
-      // For newsletter subscriptions, we'll add a "Newsletter" tag
-      // For course interest, we'll add a "Course Interest" tag
-      const tags = subscription.subscriptionType === 'newsletter' ? ['Newsletter'] : ['Course Interest'];
-
-      // First, try to get forms to find an appropriate one
-      // For now, we'll use tags instead of forms for better segmentation
-      console.log(`Syncing ${subscription.subscriptionType} subscriber: ${subscription.email}`);
-
-      // Add appropriate tag based on subscription type
+      // Map subscription types to Kit tag IDs (from your Kit account)
+      const tagId = subscription.subscriptionType === 'newsletter' ? '10130247' : '10130249';
       const tagName = subscription.subscriptionType === 'newsletter' ? 'Newsletter' : 'Course Interest';
       
-      // Note: In a real implementation, you'd want to:
-      // 1. Get your forms/tags first to find the correct IDs
-      // 2. Map your subscription types to specific Kit form/tag IDs
-      // 3. Handle the case where the subscriber already exists
+      console.log(`Syncing ${subscription.subscriptionType} subscriber: ${subscription.email} with tag: ${tagName}`);
+
+      // Add subscriber to Kit with appropriate tag
+      const result = await this.addTagToSubscriber(tagId, subscription.email);
       
-      console.log(`Would sync to Kit with tag: ${tagName} for ${subscription.email}`);
+      console.log(`✅ Successfully synced ${subscription.email} to Kit with ${tagName} tag`);
+      return result;
       
     } catch (error) {
-      console.error('Error syncing to Kit:', error);
+      console.error(`❌ Error syncing ${subscription.email} to Kit:`, error);
       throw error;
     }
   }

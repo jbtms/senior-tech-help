@@ -121,8 +121,8 @@ const Index = () => {
             <Button variant="link" size="sm" asChild className="hidden sm:inline-flex">
               <a href="#pricing" className="story-link">Pricing</a>
             </Button>
-            <Button variant="hero" size="sm" asChild className="text-xs sm:text-sm">
-              <a href={CALCOM_URL} target="_blank" rel="noopener noreferrer">Book Free Tech Check</a>
+            <Button variant="cta" size="sm" className="text-xs sm:text-sm" onClick={() => setIsMailingListDialogOpen(true)}>
+              Join Mailing List
             </Button>
           </div>
         </nav>

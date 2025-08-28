@@ -108,11 +108,11 @@ const Index = () => {
       })
     }} />
 
-      <header className="container mx-auto px-4 py-6">
+      <header className="container mx-auto px-2 sm:px-4 py-4 sm:py-6">
         <nav className="flex items-center justify-between">
           <a href="/" className="flex items-center gap-2 sm:gap-3">
-            <img src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png" alt="Tech Made Simple logo" className="h-10 w-10 sm:h-11 sm:w-11 rounded-sm" loading="eager" />
-            <span className="text-lg sm:text-xl font-semibold tracking-tight">Tech Made Simple</span>
+            <img src="/lovable-uploads/2b3dc13f-52b0-4b4e-aafd-f98904df86dc.png" alt="Tech Made Simple logo" className="h-8 w-8 sm:h-10 sm:w-10 md:h-11 md:w-11 rounded-sm" loading="eager" />
+            <span className="text-sm sm:text-lg md:text-xl font-semibold tracking-tight">Tech Made Simple</span>
           </a>
           <div className="flex items-center gap-1 sm:gap-3">
             <Button variant="link" size="sm" asChild className="hidden sm:inline-flex">
@@ -121,8 +121,9 @@ const Index = () => {
             <Button variant="link" size="sm" asChild className="hidden sm:inline-flex">
               <a href="#pricing" className="story-link">Pricing</a>
             </Button>
-            <Button variant="cta" size="sm" className="text-xs sm:text-sm" onClick={() => setIsMailingListDialogOpen(true)}>
-              Join Mailing List
+            <Button variant="cta" size="sm" className="text-xs sm:text-sm px-2 sm:px-3" onClick={() => setIsMailingListDialogOpen(true)}>
+              <span className="hidden sm:inline">Join Mailing List</span>
+              <span className="sm:hidden">Join List</span>
             </Button>
           </div>
         </nav>

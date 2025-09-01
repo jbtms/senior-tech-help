@@ -217,12 +217,20 @@ const Index = () => {
             <aside>
               <div className="rounded-lg border p-4">
                 <h3 className="mb-2 font-semibold">Quick Intro Video</h3>
-                <video className="aspect-video w-full rounded-md bg-muted" controls poster="/placeholder.svg">
-                  <source src="" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <div className="aspect-video w-full rounded-md overflow-hidden">
+                  <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                    title="Quick Intro Video" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                    className="rounded-md"
+                  ></iframe>
+                </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Add your intro video file or a YouTube embed here.
+                  Watch this quick introduction to learn how I can help with your tech needs.
                 </p>
               </div>
               <Dialog open={isMailingListDialogOpen} onOpenChange={setIsMailingListDialogOpen}>

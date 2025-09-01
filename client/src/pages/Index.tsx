@@ -221,7 +221,7 @@ const Index = () => {
                   <iframe 
                     width="100%" 
                     height="100%" 
-                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                    src="https://www.youtube.com/embed/tWXNIcBrVF8" 
                     title="Quick Intro Video" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
